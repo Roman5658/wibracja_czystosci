@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Galeria — Wibracja Czystości</title>
+    <style>
+        body {
+            margin: 0;
+            background: #f8fbfd;
+            font-family: system-ui, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #24a3d6;
+            padding: 20px;
+        }
+        .gallery-full {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+            padding: 20px;
+        }
+        .gallery-full img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .gallery-full img:hover {
+            transform: scale(1.05);
+        }
+
+        /* lightbox (увеличение фото) */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn .2s ease;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        a.back {
+            display: inline-block;
+            margin: 20px;
+            color: #24a3d6;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<h1>Pełna galeria</h1>
+
+<div class="gallery-full">
+    <img src="images/557304423_122098847085055265_4098259101854588840_n.jpg" alt="foto 1">
+    <img src="images/558354707_122098846893055265_2278381082504862917_n.jpg" alt="foto 2"><img src="images/557304423_122098847085055265_4098259101854588840_n.jpg" alt="foto 1">
+    <img src="images/558354707_122098846893055265_2278381082504862917_n.jpg" alt="foto 2"><img src="images/557304423_122098847085055265_4098259101854588840_n.jpg" alt="foto 1">
+    <img src="images/558354707_122098846893055265_2278381082504862917_n.jpg" alt="foto 2"><img src="images/557304423_122098847085055265_4098259101854588840_n.jpg" alt="foto 1">
+    <img src="images/558354707_122098846893055265_2278381082504862917_n.jpg" alt="foto 2"><img src="images/557304423_122098847085055265_4098259101854588840_n.jpg" alt="foto 1">
+    <img src="images/558354707_122098846893055265_2278381082504862917_n.jpg" alt="foto 2"><img src="images/557304423_122098847085055265_4098259101854588840_n.jpg" alt="foto 1">
+    <img src="images/558354707_122098846893055265_2278381082504862917_n.jpg" alt="foto 2"><img src="images/557304423_122098847085055265_4098259101854588840_n.jpg" alt="foto 1">
+    <img src="images/558354707_122098846893055265_2278381082504862917_n.jpg" alt="foto 2">
+    <!-- dodaj więcej zdjęć -->
+</div>
+
+<a href="index.html" class="back">⬅ Wróć</a>
+
+<script>
+    // Открытие и закрытие фото
+    document.querySelectorAll('.gallery-full img').forEach(img => {
+        img.addEventListener('click', () => {
+            const overlay = document.createElement('div');
+            overlay.className = 'lightbox';
+            overlay.innerHTML = `<img src="${img.src}" alt="">`;
+            overlay.addEventListener('click', () => overlay.remove());
+            document.body.appendChild(overlay);
+        });
+    });
+</script>
+</body>
+</html>
