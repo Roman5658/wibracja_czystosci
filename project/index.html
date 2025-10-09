@@ -1,10 +1,277 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Wibracja Czystości — Profesjonalne usługi sprzątające | przykładowy</title>
+    <meta name="description" content="Wibracja Czystości — profesjonalne sprzątanie mieszkań i biur. Usługi od sprzątania standardowego po głębokie czyszczenie. Sprawdź cennik i galerię." />
+    <link rel="canonical" href="https://example.com/" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph (social previews) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Wibracja Czystości — profesjonalne sprzątanie" />
+    <meta property="og:description" content="Sprzątanie mieszkań i biur. Szybko, dokładnie, z dbałością o detale." />
+    <meta property="og:image" content="/mnt/data/557304423_122098847085055265_4098259101854588840_n.jpg" />
+
+    <!-- JSON-LD Schema.org for local business -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Wibracja Czystości",
+            "image": ["/mnt/data/558354707_122098846893055265_2278381082504862917_n.jpg"],
+            "@id": "https://example.com/",
+            "url": "https://example.com/",
+            "telephone": "+48 123 456 789",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Przykładowa 1",
+                "addressLocality": "Warszawa",
+                "postalCode": "00-000",
+                "addressCountry": "PL"
+            },
+            "priceRange": "PLN",
+            "description": "Profesjonalne usługi sprzątające: mieszkania, biura, mycie okien i pranie dywanów.",
+            "openingHoursSpecification": [{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"}]
+        }
+    </script>
+
+    <style>
+        :root{
+            --primary:#24a3d6; /* niebieski z logo */
+            --accent:#9fd9b8;  /* mięta */
+            --muted:#6b7a86;
+            --bg:#f8fbfd;
+            --card:#ffffff;
+            --max-width:1100px;
+            --radius:14px;
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+        *{box-sizing:border-box}
+        body{margin:0;background:linear-gradient(#fbfeff,#eef7f4 60%);color:#233;line-height:1.45}
+        .container{max-width:var(--max-width);margin:0 auto;padding:24px}
+
+        header{display:flex;background: #e6e3e3;align-items:center;justify-content:space-between;padding:18px 0}
+        .logo{display:flex;align-items:center;gap:12px}
+        .logo img{height:64px;width:auto}
+        nav a{margin-left:18px;text-decoration:none;color:var(--muted);font-weight:600}
+
+        .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:28px}
+        .hero .lead{background:var(--card);padding:32px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(20,40,60,0.06)}
+        .lead h1{margin:0 0 10px;font-size:28px;color:var(--primary)}
+        .lead p{margin:0 0 18px;color:var(--muted)}
+        .cta{display:flex;gap:12px}
+        .btn{display:inline-block;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:700}
+        .btn-primary{background:var(--primary);color:#fff}
+        .btn-ghost{border:2px solid var(--primary);color:var(--primary);background:transparent}
+
+        .hero .hero-image{border-radius:12px;overflow:hidden;box-shadow:0 6px 22px rgba(20,40,60,0.08)}
+        .hero img{width:100%;height:100%;object-fit:cover;display:block}
+
+        /* services */
+        .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:28px 0}
+        .service{background:var(--card);padding:18px;border-radius:12px;text-align:center}
+        .service h3{margin:10px 0;color:var(--primary)}
+
+        .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:22px 0}
+        .price{background:linear-gradient(180deg, #fff,#fbfdff);padding:18px;border-radius:12px;border:1px solid rgba(30,60,90,0.04)}
+        .price h4{margin:6px 0}
+        .price .cost{font-size:20px;font-weight:800;color:var(--primary)}
+
+        .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:22px 0}
+        .gallery img{width:100%;height:140px;object-fit:cover;border-radius:8px;border: 1px solid}
+
+        .reviews{margin:24px 0}
+        .review{background:var(--card);padding:14px;border-radius:10px;margin-bottom:12px}
+
+        footer{padding:20px 0;color:var(--muted);font-size:14px}
+
+        /* responsive */
+        @media(max-width:980px){
+            .hero{grid-template-columns:1fr}
+            .services{grid-template-columns:repeat(2,1fr)}
+            .price-grid{grid-template-columns:repeat(2,1fr)}
+            .gallery{grid-template-columns:repeat(3,1fr)}
+        }
+        @media(max-width:600px){
+            header{flex-direction:column;align-items:flex-start}
+            .logo img{height:56px}
+            .services{grid-template-columns:1fr}
+            .price-grid{grid-template-columns:1fr}
+            .gallery{grid-template-columns:repeat(2,1fr)}
+            .hero .lead{padding:20px}
+        }
+
+        /* small util */
+        .muted{color:var(--muted)}
+        .center{text-align:center}
+
+        .card-row{display:flex;gap:16px;flex-wrap:wrap}
+    </style>
 </head>
 <body>
-$END$
+<header class="container">
+    <div class="logo">
+        <img src="images/558354707_122098846893055265_2278381082504862917_n.jpg" alt="Wibracja Czystości — logo" />
+        <div>
+            <strong>Wibracja Czystości</strong>
+            <div class="muted">Profesjonalne sprzątanie mieszkań i biur</div>
+        </div>
+    </div>
+    <nav>
+        <a href="#services">Usługi</a>
+        <a href="#prices">Cennik</a>
+        <a href="#gallery">Galeria</a>
+        <a href="#contact">Kontakt</a>
+    </nav>
+</header>
+
+<main class="container">
+    <section class="hero">
+        <div class="lead">
+            <h1>Sprzątanie, któremu możesz zaufać</h1>
+            <p>Oferujemy kompleksowe usługi sprzątania mieszkań, bloków i biur. Szybko, ekologicznie i z dbałością o każdy detal. Pracujemy na sprawdzonych środkach i elastycznym grafiku.</p>
+            <div class="cta">
+                <a class="btn btn-primary" href="#contact">Zamów usługę</a>
+                <a class="btn btn-ghost" href="#prices">Zobacz cennik</a>
+            </div>
+
+            <div style="margin-top:18px;font-size:14px;color:var(--muted)">Najbliższy termin: <strong>jutro</strong> — zadzwoń: <a href="tel:+48123456789">+48 123 456 789</a></div>
+        </div>
+
+        <div class="hero-image">
+            <img src="images/557304423_122098847085055265_4098259101854588840_n.jpg" alt="Profesjonalne sprzątanie — przykład" />
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Nasze usługi</h2>
+        <div class="services">
+            <div class="service">
+                <img src="images/558354707_122098846893055265_2278381082504862917_n.jpg" alt="sprzątanie mieszkań" style="height:80px;object-fit:contain;opacity:0.95"/>
+                <h3>Sprzątanie mieszkań</h3>
+                <p class="muted">Regularne i gruntowne sprzątanie mieszkań. Możliwość umówienia cyklicznego serwisu.</p>
+            </div>
+
+            <div class="service">
+                <h3>Sprzątanie biur</h3>
+                <p class="muted">Elastyczne grafiki — prace porządkowe po godzinach, mycie okien, odświeżanie przestrzeni biurowych.</p>
+            </div>
+
+            <div class="service">
+                <h3>Pranie dywanów i tapicerki</h3>
+                <p class="muted">Dobra jakość prania z użyciem maszyn ekstrakcyjnych — szybkie schnięcie i odświeżenie tkanin.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="prices">
+        <h2>Przykładowy cennik</h2>
+        <div class="price-grid">
+            <div class="price">
+                <h4>Sprzątanie standardowe — mieszkanie 1-pok.</h4>
+                <div class="cost">od 120 PLN</div>
+                <div class="muted">Czas: ~1-1.5h. Mycie podłóg, odkurzanie, łazienka, kuchnia.</div>
+            </div>
+
+            <div class="price">
+                <h4>Sprzątanie gruntowne — mieszkanie 2-3 pok.</h4>
+                <div class="cost">od 220 PLN</div>
+                <div class="muted">Dokładne mycie, czyszczenie fug, mebli kuchennych, odkamienianie łazienek.</div>
+            </div>
+
+            <div class="price">
+                <h4>Mycie okien (wewnętrzne)</h4>
+                <div class="cost">od 15 PLN / okno</div>
+                <div class="muted">Cena zależy od wielkości i trudności dostępu.</div>
+            </div>
+        </div>
+        <div class="muted">*Ceny orientacyjne. Dokładną wycenę podamy po krótkim briefie lub oględzinach.</div>
+    </section>
+
+    <section id="gallery">
+        <h2>Galeria</h2>
+        <div class="gallery">
+            <img src="images/557304423_122098847085055265_4098259101854588840_n.jpg" alt="galeria 1"/>
+            <img src="images/558354707_122098846893055265_2278381082504862917_n.jpg" alt="galeria 2"/>
+            <img src="images/557304423_122098847085055265_4098259101854588840_n.jpg" alt="galeria 3"/>
+            <img src="images/558354707_122098846893055265_2278381082504862917_n.jpg" alt="galeria 4"/>
+        </div>
+
+    </section>
+
+    <section id="reviews" class="reviews">
+        <h2>Отзывы klientów</h2>
+        <div class="review">
+            <strong>Anna K.</strong>
+            <div class="muted">"Profesjonalna i szybka usługa. Polecam!"</div>
+        </div>
+        <div class="review">
+            <strong>Marek P.</strong>
+            <div class="muted">"Dokładne sprzątanie biura, elastyczny grafik."</div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Kontakt</h2>
+        <div class="card-row">
+            <div style="flex:1;min-width:260px;background:var(--card);padding:18px;border-radius:12px">
+                <h3>Skontaktuj się z nami</h3>
+                <p class="muted">Zadzwoń: <a href="tel:+48123456789">+48 123 456 789</a><br/>E-mail: <a href="mailto:kontakt@example.com">kontakt@example.com</a></p>
+                <form action="#" onsubmit="alert('Formularz demo — podłącz backend lub usługę email');return false;">
+                    <label style="display:block;margin:8px 0">Imię i nazwisko<input required style="width:100%;padding:8px;margin-top:6px;border-radius:8px;border:1px solid #e6eef2"/></label>
+                    <label style="display:block;margin:8px 0">Telefon<input required style="width:100%;padding:8px;margin-top:6px;border-radius:8px;border:1px solid #e6eef2"/></label>
+                    <label style="display:block;margin:8px 0">Komentarz<textarea style="width:100%;padding:8px;margin-top:6px;border-radius:8px;border:1px solid #e6eef2" rows="4"></textarea></label>
+                    <button class="btn btn-primary" type="submit">Wyślij zapytanie</button>
+                </form>
+            </div>
+
+            <div style="flex:1;min-width:260px;background:var(--card);padding:18px;border-radius:12px">
+                <h3>Adres</h3>
+                <p class="muted">Przykładowa 1, Warszawa<br/>Godziny pracy: pon-pt 08:00–18:00</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4887.663847883924!2d21.00371566767852!3d52.22827136029717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471eccf2a40a2621%3A0xc530170d5bb0b413!2z0JzRg9C30YvQutCw0LvRjNC90YvQuSDRgtC10LDRgtGAIMKr0KDQvtC80LDCuw!5e0!3m2!1sru!2spl!4v1760004981649!5m2!1sru!2spl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="container center">
+    <div>© <strong>Wibracja Czystości</strong> —  projekt. Wszystkie prawa zastrzeżone.</div>
+    <div style="margin-top:8px" class="muted">text.</div>
+</footer>
+
+<script>
+    // Простая подсказка по lazy-loading и SEO
+    document.addEventListener('DOMContentLoaded', function(){
+        document.querySelectorAll('img').forEach(img => { img.loading = 'lazy'; });
+    });
+</script>
+
+<script>
+    const BOT_TOKEN = "ТВОЙ_ТОКЕН";
+    const CHAT_ID = "ТВОЙ_CHAT_ID";
+    const TELEGRAM_URL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+    document.querySelector("form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const name = e.target[0].value;
+        const phone = e.target[1].value;
+        const msg = e.target[2].value;
+
+        const text = `📩 Nowe zapytanie z formularza:\n👤 Imię: ${name}\n📞 Telefon: ${phone}\n💬 Komentarz: ${msg}`;
+
+        await fetch(TELEGRAM_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ chat_id: CHAT_ID, text })
+        });
+
+        alert("Dziękujemy! Wiadomość została wysłana ✅");
+        e.target.reset();
+    });
+</script>
+
 </body>
 </html>
