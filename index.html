@@ -281,9 +281,83 @@
             }
         }
 
+        /* === ЭФФЕКТ ВОДЯНОГО СТЕКЛА === */
+        body {
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 40%, rgba(255,255,255,0.25), rgba(255,255,255,0.1) 70%),
+            url('https://cdn.pixabay.com/photo/2021/08/14/05/33/raindrop-6544618_1280.jpg');
+            background-size: cover;
+            mix-blend-mode: overlay;
+            opacity: 0.45;
+            pointer-events: none;
+            animation: shimmer 12s infinite ease-in-out alternate;
+            z-index: 5; /* выше фона, но ниже текста */
+        }
+
+
+        /* Мягкое движение бликов */
+        @keyframes shimmer {
+            from { background-position: 0% 0%; opacity: 0.35; }
+            to { background-position: 100% 20%; opacity: 0.5; }
+        }
+
+        /* === СТЕКЛЯННЫЕ БЛОКИ === */
+        .hero .lead,
+        .service,
+        .price,
+        .review,
+        footer,
+        form {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(16px) saturate(180%);
+
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+        }
+
+        /* === АНМИЦИЯ КАПЕЛЕК ВОДЫ === */
+        @keyframes drip {
+            0% { transform: translateY(0) scale(1); opacity: 0.6; }
+            50% { transform: translateY(8px) scale(1.05); opacity: 0.8; }
+            100% { transform: translateY(0) scale(1); opacity: 0.6; }
+        }
+
+        /* Капельки */
+        .drop {
+            position: fixed;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            filter: blur(1.5px);
+            animation: drip 4s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 9999; /* чтобы были поверх всего */
+        }
+
+        /* Добавим разные размеры */
+        .drop:nth-child(1){ width:10px; height:10px; top:20%; left:30%; animation-delay: 0s; }
+        .drop:nth-child(2){ width:8px; height:8px; top:40%; left:70%; animation-delay: 2s; }
+        .drop:nth-child(3){ width:12px; height:12px; top:60%; left:50%; animation-delay: 4s; }
+        .drop:nth-child(4){ width:6px; height:6px; top:75%; left:20%; animation-delay: 1s; }
+        .drop:nth-child(5){ width:9px; height:9px; top:85%; left:80%; animation-delay: 3s; }
+
+
     </style>
 </head>
 <body>
+<!-- Капельки воды -->
+<div class="drop"></div>
+<div class="drop"></div>
+<div class="drop"></div>
+<div class="drop"></div>
+<div class="drop"></div>
+
 <header>
     <div class="container">
         <div class="logo">
