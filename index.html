@@ -291,22 +291,43 @@
             content: "";
             position: fixed;
             inset: 0;
-            background: radial-gradient(circle at 50% 40%, rgba(255,255,255,0.25), rgba(255,255,255,0.1) 70%),
-            url('https://cdn.pixabay.com/photo/2021/08/14/05/33/raindrop-6544618_1280.jpg');
+            background:
+                    radial-gradient(circle at 50% 40%, rgba(255,255,255,0.25), rgba(255,255,255,0.1) 70%),
+                    url('https://cdn.pixabay.com/photo/2021/08/14/05/33/raindrop-6544618_1280.jpg');
             background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center 0;
             mix-blend-mode: overlay;
             opacity: 0.45;
             pointer-events: none;
-            animation: shimmer 12s infinite ease-in-out alternate;
-            z-index: 5; /* выше фона, но ниже текста */
+            z-index: 5;
+
+            animation: floatDown 20s linear infinite;
+        }
+
+        @keyframes floatDown {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
         }
 
 
-        /* Мягкое движение бликов */
+
+        /* Универсальная анимация для всех экранов */
         @keyframes shimmer {
-            from { background-position: 0% 0%; opacity: 0.35; }
-            to { background-position: 100% 20%; opacity: 0.5; }
+            0% {
+                background-position: center 0%;
+                opacity: 0.35;
+            }
+            100% {
+                background-position: center 20%;
+                opacity: 0.55;
+            }
         }
+
 
         /* === СТЕКЛЯННЫЕ БЛОКИ === */
         .hero .lead,
@@ -323,29 +344,43 @@
         }
 
         /* === АНМИЦИЯ КАПЕЛЕК ВОДЫ === */
+        /* === НОВАЯ АНИМАЦИЯ СТЕКАЮЩИХ КАПЕЛЬ === */
         @keyframes drip {
-            0% { transform: translateY(0) scale(1); opacity: 0.6; }
-            50% { transform: translateY(8px) scale(1.05); opacity: 0.8; }
-            100% { transform: translateY(0) scale(1); opacity: 0.6; }
+            0% {
+                transform: translateY(-20vh);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+                transform: translateY(110vh);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(120vh);
+            }
         }
 
-        /* Капельки */
+        /* Капельки — эффект дождя */
         .drop {
             position: fixed;
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.7);
             border-radius: 50%;
-            filter: blur(1.5px);
-            animation: drip 4s infinite ease-in-out;
+            filter: blur(2px);
+            animation: drip linear infinite;
             pointer-events: none;
-            z-index: 9999; /* чтобы были поверх всего */
+            z-index: 9999;
         }
 
-        /* Добавим разные размеры */
-        .drop:nth-child(1){ width:10px; height:10px; top:20%; left:30%; animation-delay: 0s; }
-        .drop:nth-child(2){ width:8px; height:8px; top:40%; left:70%; animation-delay: 2s; }
-        .drop:nth-child(3){ width:12px; height:12px; top:60%; left:50%; animation-delay: 4s; }
-        .drop:nth-child(4){ width:6px; height:6px; top:75%; left:20%; animation-delay: 1s; }
-        .drop:nth-child(5){ width:9px; height:9px; top:85%; left:80%; animation-delay: 3s; }
+        /* Разные размеры, позиции и скорости */
+        .drop:nth-child(1){ width:8px; height:8px; left:20%; animation-duration: 7s; animation-delay: 0s; }
+        .drop:nth-child(2){ width:10px; height:10px; left:40%; animation-duration: 9s; animation-delay: 2s; }
+        .drop:nth-child(3){ width:6px; height:6px; left:60%; animation-duration: 6s; animation-delay: 1s; }
+        .drop:nth-child(4){ width:9px; height:9px; left:75%; animation-duration: 8s; animation-delay: 3s; }
+        .drop:nth-child(5){ width:7px; height:7px; left:85%; animation-duration: 10s; animation-delay: 5s; }
+
 
 
     </style>
