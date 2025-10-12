@@ -97,19 +97,104 @@
         .lead p{margin:0 0 18px;color:var(--muted)}
         .cta{display:flex;gap:12px}
         .btn{display:inline-block;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:700}
-        .btn-primary{background:var(--primary);color:#fff; box-shadow:
-                15px 15px 35px rgba(0, 0, 0, 0.45),    /* жирная глубокая тень снизу-справа */
-                -10px -10px 25px rgba(255, 255, 255, 0.9), /* яркий свет сверху-слева */
-                inset 0 3px 8px rgba(255, 255, 255, 0.6),  /* внутренний блик */
-                inset 0 -4px 10px rgba(0, 0, 0, 0.2)}
+        /*.btn-primary{background:var(--primary);color:#fff; box-shadow:*/
+        /*        15px 15px 35px rgba(0, 0, 0, 0.45),    !* жирная глубокая тень снизу-справа *!*/
+        /*        -10px -10px 25px rgba(255, 255, 255, 0.9), !* яркий свет сверху-слева *!*/
+        /*        inset 0 3px 8px rgba(255, 255, 255, 0.6),  !* внутренний блик *!*/
+        /*        inset 0 -4px 10px rgba(0, 0, 0, 0.2)}*/
 
+
+        /*.btn-primary:active {*/
+        /*    box-shadow:*/
+        /*            inset 5px 5px 15px rgba(0, 0, 0, 0.4),*/
+        /*            inset -5px -5px 15px rgba(255, 255, 255, 0.8);*/
+        /*    transform: translateY(1px);*/
+        /*}*/
+
+
+
+
+        /* === ГЛЯНЦЕВАЯ ВЫПУКЛАЯ КНОПКА С БЛИКОМ === */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, #4fc0d0 0%, #3ca5b5 100%);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 18px 45px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+
+            /* Глубокая тень — эффект капли */
+            box-shadow:
+                    15px 15px 35px rgba(0, 0, 0, 0.45),
+                    -10px -10px 25px rgba(255, 255, 255, 0.9),
+                    inset 0 3px 8px rgba(255, 255, 255, 0.6),
+                    inset 0 -4px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                    12px 12px 30px rgba(0, 0, 0, 0.55),
+                    -10px -10px 30px rgba(255, 255, 255, 1),
+                    inset 0 4px 10px rgba(255, 255, 255, 0.7),
+                    inset 0 -5px 10px rgba(0, 0, 0, 0.3);
+        }
 
         .btn-primary:active {
-            box-shadow:
-                    inset 5px 5px 15px rgba(0, 0, 0, 0.4),
-                    inset -5px -5px 15px rgba(255, 255, 255, 0.8);
             transform: translateY(1px);
+            box-shadow:
+                    inset 8px 8px 25px rgba(0, 0, 0, 0.4),
+                    inset -8px -8px 25px rgba(255, 255, 255, 0.8);
         }
+
+        /* === СВЕТОВОЙ БЛИК === */
+        .btn-primary::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -100%;
+            width: 60%;
+            height: 200%;
+            background: linear-gradient(
+                    120deg,
+                    rgba(255, 255, 255, 0.0) 0%,
+                    rgba(0, 255, 255, 0.35) 50%,
+                    rgba(0, 200, 255, 0.0) 100%
+            );
+            transform: skewX(-20deg);
+            opacity: 0;
+        }
+
+        /* Анимация проблеска */
+        @keyframes shine {
+            0% {
+                left: -100%;
+                opacity: 0;
+            }
+            30% {
+                opacity: 1;
+            }
+            100% {
+                left: 130%;
+                opacity: 0;
+            }
+        }
+
+        /* При наведении — “проезжает” блик */
+        .btn-primary:hover::after {
+            animation: shine 1.8s ease-in-out forwards;
+        }
+
+
+
+
+
         .btn-ghost{border:2px solid var(--primary);color:var(--primary);background:transparent;box-shadow:
                 10px 10px 25px rgba(0, 0, 0, 0.3),   /* тень снизу и справа (основная) */
                 -8px -8px 20px rgba(255, 255, 255, 0.8); }
@@ -305,7 +390,7 @@
             }
         }
 
-        /* === ЭФФЕКТ ВОДЯНОГО СТЕКЛА === */
+
         body {
             position: relative;
             overflow-x: hidden;
@@ -319,28 +404,30 @@
                     radial-gradient(circle at 50% 40%, rgba(255,255,255,0.25), rgba(255,255,255,0.1) 70%),
                     url('https://cdn.pixabay.com/photo/2021/08/14/05/33/raindrop-6544618_1280.jpg');
             background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center 0;
+            background-repeat: repeat-y; /* повторяем по вертикали */
+            background-position: center 100%;
             mix-blend-mode: overlay;
             opacity: 0.45;
             pointer-events: none;
             z-index: 5;
 
-            animation: floatDown 20s linear infinite;
+            animation: floatDown 10s linear infinite;
         }
 
         @keyframes floatDown {
-            0% {
-                transform: translateY(0);
+            from {
+                background-position: center 100%;
             }
-            100% {
-                transform: translateY(100vh);
+            to {
+                background-position: center 0;
             }
         }
 
 
 
-        /* Универсальная анимация для всех экранов */
+
+
+
         @keyframes shimmer {
             0% {
                 background-position: center 0%;
@@ -353,7 +440,7 @@
         }
 
 
-        /* === СТЕКЛЯННЫЕ БЛОКИ === */
+
         .hero .lead,
         .service,
         .price,
@@ -363,15 +450,14 @@
             background: rgba(255, 255, 255, 0.35);
             backdrop-filter: blur(16px) saturate(180%);
 
-            box-shadow:
-                    15px 15px 35px rgba(0, 0, 0, 0.45),    /* жирная глубокая тень снизу-справа */
-                    -10px -10px 25px rgba(255, 255, 255, 0.9), /* яркий свет сверху-слева */
-                    inset 0 3px 8px rgba(255, 255, 255, 0.6),  /* внутренний блик */
-                    inset 0 -4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 15px 15px 35px 20px rgba(0, 0, 0, 0.45), -16px 20px 25px 0px rgba(255, 255, 255, 0.9), inset 18px 19px 20px 20px rgba(255, 255, 255, 0.6), inset 0px -1px 0px 7px rgba(0, 0, 0, 0.2);
         }
 
-        /* === АНМИЦИЯ КАПЕЛЕК ВОДЫ === */
-        /* === НОВАЯ АНИМАЦИЯ СТЕКАЮЩИХ КАПЕЛЬ === */
+        form{
+            padding: 15px;
+        }
+
+
         @keyframes drip {
             0% {
                 transform: translateY(-20vh);
