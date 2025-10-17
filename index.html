@@ -404,7 +404,7 @@
                     radial-gradient(circle at 50% 40%, rgba(255,255,255,0.25), rgba(255,255,255,0.1) 70%),
                     url('https://cdn.pixabay.com/photo/2021/08/14/05/33/raindrop-6544618_1280.jpg');
             background-size: cover;
-            background-repeat: repeat-y; /* повторяем по вертикали */
+            background-repeat: repeat-y;
             background-position: center 100%;
             mix-blend-mode: overlay;
             opacity: 0.45;
@@ -476,7 +476,7 @@
             }
         }
 
-        /* Капельки — эффект дождя */
+
         .drop {
             position: fixed;
             background: rgba(255, 255, 255, 0.7);
@@ -487,7 +487,7 @@
             z-index: 9999;
         }
 
-        /* Разные размеры, позиции и скорости */
+
         .drop:nth-child(1){ width:8px; height:8px; left:20%; animation-duration: 7s; animation-delay: 0s; }
         .drop:nth-child(2){ width:10px; height:10px; left:40%; animation-duration: 9s; animation-delay: 2s; }
         .drop:nth-child(3){ width:6px; height:6px; left:60%; animation-duration: 6s; animation-delay: 1s; }
@@ -499,7 +499,17 @@
     </style>
 </head>
 <body>
-<!-- Капельки воды -->
+
+<div class="drop"></div>
+<div class="drop"></div>
+<div class="drop"></div>
+<div class="drop"></div>
+<div class="drop"></div>
+<div class="drop"></div>
+<div class="drop"></div>
+<div class="drop"></div>
+<div class="drop"></div>
+<div class="drop"></div>
 <div class="drop"></div>
 <div class="drop"></div>
 <div class="drop"></div>
@@ -521,7 +531,7 @@
             <span></span><span></span><span></span>
         </button>
 
-        <!-- Навигация -->
+
         <nav class="nav-links">
             <a href="#services">Usługi</a>
             <a href="#prices">Cennik</a>
@@ -593,7 +603,7 @@
                 <div class="muted">Cena zależy od wielkości i trudności dostępu.</div>
             </div>
         </div>
-<!--        <div class="muted">*Ceny orientacyjne. Dokładną wycenę podamy po krótkim briefie lub oględzinach.</div>-->
+
     </section>
 
     <section id="gallery">
@@ -603,7 +613,7 @@
             <img src="project/images/558354707_122098846893055265_2278381082504862917_n.jpg" alt="galeria 2">
             <img src="project/images/557304423_122098847085055265_4098259101854588840_n.jpg" alt="galeria 3">
             <img src="project/images/558354707_122098846893055265_2278381082504862917_n.jpg" alt="galeria 4">
-            <!-- добавляй больше фото -->
+
         </div>
         <div class="center" style="margin-top:10px">
             <a href="project/galeria.html" class="btn btn-ghost">Zobacz całą galerię</a>
@@ -659,8 +669,8 @@
 </script>
 
 <script>
-    const BOT_TOKEN = "ТВОЙ_ТОКЕН";
-    const CHAT_ID = "ТВОЙ_CHAT_ID";
+    const BOT_TOKEN = "8287788125:AAHnLeQ_NFgzMZCXgq08v9E1h4OlnsXFK8E";
+    const CHAT_ID = "1455108039";
     const TELEGRAM_URL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
     document.querySelector("form").addEventListener("submit", async (e) => {
@@ -707,7 +717,7 @@
         nav.classList.toggle('open');
     });
 
-    // Чтобы меню закрывалось при нажатии на пункт
+
     document.querySelectorAll('.nav-links a').forEach(link =>
         link.addEventListener('click', () => {
             burger.classList.remove('active');
